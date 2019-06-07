@@ -1,0 +1,78 @@
+#userReport{
+    .curMonth{
+        text-align: center;
+        font-weight: bold;
+        font-size: 12px;
+        padding: 10px 0;
+        border-top: 1px solid #ccc;
+        border-left: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        margin-top: 20px;
+    }
+    .table {
+        font-size: 14px;
+        td {
+            padding: 10px;
+            text-align: center;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+        .delay {
+            color: #fd7e14;
+        }
+        .PL {
+            color: green;
+        }
+        .WFH {
+            color: chocolate;
+        }
+        .holiday{
+            color: blueviolet;
+        }
+        .weekend {
+            color: gray;
+        }
+        .absent {
+            color: red;
+        }
+        th {
+            padding: 10px;
+            text-align: center;
+        }
+    }
+}
+
+#currentUserReport {
+    thead {
+        th {
+            text-align: center;
+        }
+    }
+    tbody {
+        tr {
+            td {
+                text-align: center;
+            }
+        }
+    }
+}
+#updateTime {
+    button {
+        margin-top: 10px;
+    }
+}
+
+#prevHistory{
+    width: 50%;
+    margin: 0 auto;
+    select{
+        margin-right: 10px;
+    }
+}
+
+.modal-content button.btn.btn-primary.top {
+    border-radius: unset;
+}
+
+

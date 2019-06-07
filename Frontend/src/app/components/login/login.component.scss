@@ -1,0 +1,23 @@
+#login {
+    margin: 100px 0;
+    .col-centered {
+        float: none;
+        margin: 0 auto;
+        h1 {
+            margin: 0 auto;
+            text-align: center;
+        }
+        hr {
+            margin-top: 0;
+
+        }
+        input {
+            font-size: 12px;
+            font-weight: bold;
+        }
+        // #username {
+        //     text-align: center;
+        //     font-weight: bold;
+        // }
+    }
+}

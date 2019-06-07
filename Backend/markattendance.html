@@ -1,0 +1,7 @@
+<script>
+  var url = window.location.href;
+  alert(decodeURI(url.substr(url.indexOf("=")+1)));
+
+  var win = window.open("about:blank", "_self");
+  win.close();
+</script>

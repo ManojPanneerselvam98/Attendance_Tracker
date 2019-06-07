@@ -1,0 +1,14 @@
+#SmeReport{
+    width: 50%;
+    margin: 0 auto;
+    .table {
+        td {
+            .fas {
+                padding: 10px;
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.container {
+    margin-top: 10px;
+}
+
+div#time-picker-wrapper {
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 10555 !important;
+}
+

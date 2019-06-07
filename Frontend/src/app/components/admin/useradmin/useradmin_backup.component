@@ -1,0 +1,167 @@
+<div class="container" id="aUserReport">
+  <div class="row">
+    <!-- <button (click)="logout()" class="btn btn-primary pull-right">Logout</button> -->
+    {{userModel}}
+    <button type="button" class="btn btn-primary" (click)="openModal(template)">Create User</button>
+
+    <ng-template #template>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Create User</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #myForm="ngForm" (ngSubmit)="postUser(myForm.value)">
+          <!-- <input type="text" class="form-control" name="name" [(ngModel)]="playerName">
+          <input type="text" class="form-control" name="email" [(ngModel)]="playeremail"> -->
+          <div class="form-group clearfix">
+            <label class="control-label col-sm-2" for="name">Name</label>
+            <div class="col-sm-10">
+              <input type="text" autocomplete="off" class="form-control" name="name" [(ngModel)]="name" required />
+            </div>
+          </div>
+          <div class="form-group clearfix">
+            <label class="control-label col-sm-2" for="email">Email</label>
+            <div class="col-sm-10">
+              <input type="text" autocomplete="off" class="form-control" name="email" [(ngModel)]="email" required />
+            </div>
+          </div>
+          <div class="form-group clearfix">
+            <label class="control-label col-sm-2" for="username">Username</label>
+            <div class="col-sm-10">
+              <input type="text" autocomplete="off" class="form-control" name="username" [(ngModel)]="username" required />
+            </div>
+          </div>
+          <div class="form-group clearfix">
+            <label class="control-label col-sm-2" for="role">Role</label>
+            <div class="col-sm-10">
+              <input type="text" autocomplete="off" class="form-control" name="role" [(ngModel)]="role" required />
+            </div>
+          </div>
+          <div class="form-group clearfix">
+            <label class="control-label col-sm-2" for="password">Password</label>
+            <div class="col-sm-10">
+              <input type="password" autocomplete="off" class="form-control" name="password" [(ngModel)]="password" required />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary pull-right">Create</button>
+          <div class="clearfix"></div>
+        </form>
+      </div>
+    </ng-template>
+    <br>
+    <br>
+    <br>
+    <div class="table-responsive">
+      <table class="table table-bordered text-center">
+        <thead class="text-center">
+          <tr>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of myData">
+            <td>{{item.name}}</td>
+            <td>{{item.username}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.role}}</td>
+            <td class="action">
+              <span (click)="getUserById(item._id)" class="glyphicon glyphicon-pencil edit"></span>
+              <span (click)="deleteUser(item._id)" class="glyphicon glyphicon-trash delete"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- <button type="button" class="btn btn-primary" (click)="showModal()">Render auto-shown modal</button> -->
+<div *ngIf="isModalShown" [config]="{ show: true, backdrop: 'static', keyboard :true }" bsModal #autoShownModal="bs-modal"
+  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name" id="updateUser">
+  <div class="modal-dialog">
+    <div class="modal-content" *ngIf="myDatabyId">
+      <div class="modal-header">
+        <h4 id="dialog-auto-name" class="modal-title pull-left">Edit {{myDatabyId.username}} User</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="horizontal" name="form" novalidate>
+          <div class="form-group clearfix">
+            <label class="control-label col-sm-2" for="name">Name</label>
+            <div class="col-sm-10">
+              <input type="text" autocomplete="off" class="form-control" name="name" [(ngModel)]="myDatabyId.name" required />
+            </div>
+          </div>
+          <div class="form-group clearfix">
+            <label class="control-label col-sm-2" for="email">Email</label>
+            <div class="col-sm-10">
+              <input type="text" autocomplete="off" class="form-control" name="email" [(ngModel)]="myDatabyId.email" required />
+            </div>
+          </div>
+          <div class="form-group clearfix">
+            <label class="control-label col-sm-2" for="username">Username</label>
+            <div class="col-sm-10">
+              <!-- <input type="text" readonly class="form-control" name="username" [(ngModel)]="myDatabyId.username" required /> -->
+              <p class="static">{{myDatabyId.username}}</p>
+            </div>
+          </div>
+          <div class="form-group clearfix">
+            <label class="control-label col-sm-2" for="role">Role</label>
+            <div class="col-sm-10">
+              <input type="text" autocomplete="off" class="form-control" name="role" [(ngModel)]="myDatabyId.role" required />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="updateUser(myDatabyId._id, myDatabyId)">OK</button>
+        <button type="button" class="btn btn-default" (click)="hideModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="modal-dialog" *ngIf="hideElement">
+  <div class="modal-content" *ngIf="myDatabyId">
+     <div class="modal-header">
+       <button type="button" class="close" (click)="close()" >&times;</button>
+       <h4 class="modal-title">Edit {{myDatabyId.username}} User</h4>
+     </div>
+     <pre>{{myDatabyId | json}}</pre>
+
+     
+     <div class="modal-body">
+            <form name="form" novalidate>
+                 <div class="form-group">
+                     <label for="name">Name</label>
+                     <input type="text" class="form-control" name="name"  [(ngModel)]="myDatabyId.name" required />
+                 </div>
+                 <div class="form-group">
+                         <label for="email">Email</label>
+                         <input type="text" class="form-control" name="email"  [(ngModel)]="myDatabyId.email" required />
+                 </div>
+                <div class="form-group">
+                         <label for="username">Username</label>
+                         <input type="text" class="form-control" name="username"  [(ngModel)]="myDatabyId.username" required />
+                 </div>
+                 <div class="form-group">
+                         <label for="role">Role</label>
+                         <input type="text" class="form-control" name="role"  [(ngModel)]="myDatabyId.role" required />
+                 </div>
+             </form>
+     </div>
+     <div class="modal-footer">
+       <button type="button" class="btn btn-primary" (click)="updateUser(myDatabyId._id, myDatabyId)">OK</button>
+       <button type="button" class="btn btn-default" (click)="close()" >Cancel</button>
+     </div>
+   </div>
+</div> -->

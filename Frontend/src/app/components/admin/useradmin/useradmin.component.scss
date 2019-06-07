@@ -1,0 +1,31 @@
+#aUserReport{
+    .table {
+        thead {
+            tr {
+                th {
+                    text-align: center;
+                }
+            }
+        }
+        tbody{
+            tr {
+                td {
+                    span {
+                        padding: 10px;
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+#updateUser {
+    .static {
+        font-weight: bold;
+        margin: 0 auto;
+    }
+}

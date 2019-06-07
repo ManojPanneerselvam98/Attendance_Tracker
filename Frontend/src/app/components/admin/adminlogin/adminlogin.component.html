@@ -1,0 +1,23 @@
+<div class="container" id="adminLogin">
+  <div class="row row.justify-content-center">
+    <div class="col-md-4 col-centered">
+      <h1>Login Your Account</h1>
+      <hr>
+      <form (ngSubmit)="onLogin()" novalidate id="loginForm">
+        <div class="form-group row">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" placeholder="Enter Username" [(ngModel)]="user.username" name="username"
+            required autocomplete="off">
+
+        </div>
+        <div class="form-group row">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Enter Password" [(ngModel)]="user.password" name="password"
+            required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+
+      </form>
+    </div>
+  </div>
+</div>

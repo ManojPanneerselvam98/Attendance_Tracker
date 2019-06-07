@@ -1,0 +1,62 @@
+<br /><br />
+<div class="container" id="userPL">
+  <div class="container" id="holiday">
+    <form #holidayForm="ngForm" (ngSubmit)="makeHoliday(holidayForm)">
+      <input
+        name="date"
+        id="date"
+        type="text"
+        [minDate]="minDate"
+        class="form-control mb-2 mx-sm-4"
+        placeholder="Datepicker"
+        bsDatepicker
+        [(ngModel)]="datepickerModel"
+        autocomplete="off"
+      />
+      <!-- <p name="dateval" id="dateval" ngModel ngModel>{{datepickerModel}}</p> -->
+      <select
+        name="username"
+        id="username"
+        ngModel
+        class="form-control mb-2 mx-sm-4"
+      >
+        <option *ngFor="let user of userList">{{ user.name }}</option>
+      </select>
+      <button type="submit" class="btn btn-primary float-right">
+        Submit
+      </button>
+    </form>
+  </div>
+  <br /><br />
+  <form #historyForm="ngForm" (ngSubmit)="historyPL(historyForm)" class="form-inline plHistory">
+        <select class="form-control col-3" name="month" id="month" ngModel>
+            <option *ngFor= "let month of monthNames;" value="{{month}}">{{month}}</option>
+        </select>
+        <select class="form-control col-3" name="year" id="year" ngModel>
+            <option *ngFor= "let year of years" value="{{year}}">{{year}}</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Get Monthwise Report</button>
+    </form>
+
+  <br /><br />
+  <div *ngIf="userPL" id="plLeaveDetails">
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let obj of userPL">
+            <td>{{ obj.user.name }}</td>
+            <td>{{ obj.curdate }} - {{ obj.curmonth }} - {{ obj.curyear }}</td>
+            <td><i class="fas fa-trash-alt" (click)="cancelPL(obj)"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

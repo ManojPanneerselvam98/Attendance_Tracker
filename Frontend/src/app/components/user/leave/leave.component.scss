@@ -1,0 +1,17 @@
+#pl {
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    #plLeaveDetails {
+        li {
+            font-size: 12px;
+            font-weight: bold;
+            list-style: none;
+        }
+        .fas {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}

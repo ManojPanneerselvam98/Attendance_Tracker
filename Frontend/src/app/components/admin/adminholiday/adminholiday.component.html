@@ -1,0 +1,48 @@
+<br/><br/>
+<div class="container" id="holiday">
+    <form #holidayForm="ngForm" (ngSubmit)="makeHoliday(holidayForm)">
+        <input name="date" id="date" type="text" [minDate]="minDate" class="form-control mb-2 mx-sm-4" placeholder="Datepicker" bsDatepicker [(ngModel)]="datepickerModel" autocomplete="off"/>
+        <input name="holidayreason" id="holidayreason" type="text" ngModel class="form-control mb-2 mx-sm-4" placeholder="Holiday Reason" autocomplete="off"/>
+        <!-- <p name="dateval" id="dateval" ngModel ngModel>{{datepickerModel}}</p> -->
+        <!-- <select name="username" id="username" ngModel class="form-control">
+                <option *ngFor ="let user of userList">{{user.username}}</option>
+        </select> -->
+        <button type="submit" class="btn btn-primary float-right">Submit</button>
+    </form>
+    <!-- <br/><br/>
+
+    <form #historyForm="ngForm" (ngSubmit)="historyHL(historyForm)" class="form-inline hlHistory">
+            <select class="form-control col-3" name="month" id="month" ngModel>
+                <option *ngFor= "let month of monthNames;" value="{{month}}">{{month}}</option>
+            </select>
+            <select class="form-control col-3" name="year" id="year" ngModel>
+                <option *ngFor= "let year of years">{{year}}</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Get Monthwise Report</button>
+        </form> -->
+
+        <br/><br/><br/><br/>
+  <div *ngIf = "userHL" id="hlDetails">
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Reason</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor= "let obj of userHL">
+                <td>{{obj.curdate}} - {{obj.curmonth}} - {{obj.curyear}}</td>
+                <td>{{obj.holidayreason}}</td>
+                <td><i class="fas fa-trash-alt" (click)="cancelHoliday(obj)"></i></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+   
+</div>
+
+

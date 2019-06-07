@@ -1,0 +1,53 @@
+<div class="row">
+        <div class="col-xs-12 col-12 col-md-4 form-group">
+          <bs-datepicker-inline 
+          [bsValue]="bsInlineValue"
+          (bsValueChange)="onValueChange($event)"
+          [minDate]="minDate"
+          [maxDate]="maxDate"
+          ngModel 
+          id="plannedleaveInput"
+          name="plannedleave" 
+          [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-default' }"
+          >
+        </bs-datepicker-inline>
+        </div>
+      </div>
+
+<!-- <form #leaveForm="ngForm" (ngSubmit)="updateTime(leaveForm)">
+<div class="container" id="userLeave">
+    <input type="text" name="plannedleave" id="plannedleave" autocomplete="off" [(ngModel)]="plannedleave"
+    class="datepicker-here"
+    data-language='en'
+    data-multiple-dates="31"
+    data-disableNavWhenOutOfRange="true"
+    data-multiple-dates-separator=", "
+    data-position='bottom left'/>
+</div>
+<button type="submit" class="btn btn-primary float-right form-control" id="updatePlannedLeave">Update</button>
+</form> -->
+
+ <!-- <div class="container">
+        <h3>Bootstrap Multi Select Date Picker</h3>
+        <input type="text" class="form-control date" placeholder="Pick the multiple dates">
+    </div>	  -->
+<!-- 
+    <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+                            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $(function () {
+                        $('#datetimepicker1').datetimepicker();
+                    });
+                </script>
+            </div>
+        </div> -->

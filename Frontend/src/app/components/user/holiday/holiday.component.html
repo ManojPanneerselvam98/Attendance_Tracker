@@ -1,0 +1,33 @@
+<div id="holiday">
+  <div class="container">
+    <div class="form-group">
+        <bs-datepicker-inline 
+            id="holidayInput"
+            [minDate]="minDate"
+            [maxDate]="maxDate"
+            (bsValueChange)="onValueChange($event)"
+            [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-default' }"
+        ></bs-datepicker-inline>
+    </div>
+  </div>
+  <div *ngIf = "HLDetails" id="HLDetails">
+      <div class="container">
+          <table class="table">
+              <thead>
+              <tr>
+                  <th>Holiday</th>
+                  <th>Action</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor= "let obj of HLDetails">
+                  <td>{{obj.curdate}} - {{obj.curmonth}} - {{obj.curyear}}</td>
+                  <td><i class="fas fa-trash-alt" (click)="cancelHL(obj.curdate)"></i></td>
+              </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+
+

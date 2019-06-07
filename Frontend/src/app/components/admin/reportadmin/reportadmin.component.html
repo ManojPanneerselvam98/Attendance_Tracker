@@ -1,0 +1,133 @@
+<div class="container" id="userReport">
+    <br/>
+    <div class="" id="prevHistory">
+        <form #historyForm="ngForm" (ngSubmit)="historyUser(historyForm)" class="form-inline">
+            <select class="form-control col-2" name="month" id="month" ngModel>
+                <option *ngFor= "let month of monthNames;" value="{{month}}">{{month}}</option>
+            </select>
+            <select class="form-control col-2" name="year" id="year" ngModel>
+                <option *ngFor= "let year of years">{{year}}</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Get Monthwise Report</button>
+        </form>
+    </div>
+    <br/><br/>
+    <div class="row">
+        <!-- <button (click)="logout()" class="btn btn-primary pull-right">Logout</button> -->
+        <br>
+        <br>
+        <br>
+        <div class="table-responsive" id="reportTable">
+            <table style="font-size: 10px" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th *ngFor="let obj of headers">{{obj}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of myData | keyvalue;  index as i">
+                        <td>{{item.key}}</td>
+                        <td *ngFor="let obj of item.value" [ngClass]="{
+                                                                      'present':obj.status === 'P',
+                                                                      'delay':obj.status === 'D',
+                                                                      'WFH':obj.status === 'W',
+                                                                      'PL':obj.status === 'PL',
+                                                                      'holiday':obj.status === 'H',
+                                                                      'weekend':obj.status === 'O',
+                                                                      'absent':obj.status === 'A'
+                                                                      }" (click)="showModal(obj._id, obj.username)">
+                            <span>{{obj.status}}</span>
+                        </td>
+                        <!-- <td>{{item.key}}</td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+
+</div>
+
+
+<!-- <button type="button" class="btn btn-primary" (click)="showModal()">Render auto-shown modal</button> -->
+<div *ngIf="isModalShown" [config]="{ show: true, backdrop: 'static', keyboard :false }" (onHidden)="onHidden()" bsModal
+     #autoShownModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name">
+        
+     <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-auto-name" class="modal-title pull-left">{{modaltitle}} Report</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <button class="btn btn-primary top" (click)="makeAbsent()" *ngIf="viewUserReport"> Make Absent </button>
+            <button class="btn btn-primary top" (click)="viewReport()" *ngIf="makeAbsentReport"> View Report </button>
+            <div class="modal-body" *ngIf="makeAbsentReport">
+            
+                    <!-- {{modaltitle}} -->
+
+                    <form (ngSubmit)="onSubmit(myDataById,$event)" class="form-inline makeAbsent">
+                            
+                            <div class="form-group mb-2 mx-sm-4">
+                              <select name="type" class="form-control">
+                                  <option>Sick Leave</option>
+                                  <option>Emergencey Leave</option>
+                              </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary float-right">Mark as Absent</button>
+                        </form>
+            </div> 
+            <div class="modal-body" *ngIf="viewUserReport">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="currentUserReport">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Time</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of myDataById">
+                                <td>{{item.username}}</td>
+                                <td>{{item.time}}</td>
+                                <td>{{item.curdate}}-{{item.curmonth}}-{{item.curyear}} </td>
+                                <td>{{item.status}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <br/>
+                <div *ngIf="myDataupdateval" id="updateTime">
+                    <!-- <div *ngIf="myDataupdateval.status !=='W' && myDataupdateval.status !=='PL' && myDataupdateval.status !=='H' && myDataupdateval.status !=='O' && myDataupdateval.status !=='A'"> -->
+                        <form #timeForm="ngForm" (ngSubmit)="updateTime(timeForm, myDataupdateval._id)">
+                            <div class="clearfix">
+                                <select name="status" id="status" ngModel class="form-control">
+                                    <option value="" selected>Select Status</option>
+                                    <option value="P">P</option>
+                                    <option value="D">D</option>
+                                    <option value="W">W</option>
+                                    <option value="PL">PL</option>
+                                    <option value="H">H</option>
+                                    <option value="O">O</option>
+                                </select>
+                                <br/>
+                                <input atp-time-picker value="{{selectedTime}}" name="timepick" id="timepick" ngModel autocomplete="off" class="form-control"
+                                       placeholder="Select your time" />
+                                <input name="date" id="date" [(ngModel)]= myDataupdateval.curdate hidden/>
+                                <input name="month" id="month" [(ngModel)]= myDataupdateval.curmonth hidden/>
+                                <input name="year" id="year" [(ngModel)]= myDataupdateval.curyear hidden/>
+                            </div>
+                            <button type="submit" class="btn btn-primary float-right form-control" id="updateTime">Update</button>
+                        </form>
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

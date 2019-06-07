@@ -1,0 +1,85 @@
+<div class="container" id="SmeReport">
+<br/>
+  <button type="button" class="btn btn-primary float-right" (click)="openModal(template)">Create SME</button>
+   <!-- Create SME Modal Popup -->
+   <ng-template #template>
+     <div class="modal-header">
+       <h4 class="modal-title pull-left">Create SME</h4>
+       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <div class="modal-body">
+       <form #myForm="ngForm" (ngSubmit)="postSme(myForm.value)">
+         <!-- <input type="text" class="form-control" name="name" [(ngModel)]="playerName">
+         <input type="text" class="form-control" name="email" [(ngModel)]="playeremail"> -->
+         <div class="form-group row">
+           <label class="control-label col-sm-2" for="name">Name</label>
+           <div class="col-sm-10">
+             <input type="text" autocomplete="off" class="form-control" name="name" [(ngModel)]="name" required />
+           </div>
+         </div>
+         <button type="submit" class="btn btn-primary float-right">Create</button>
+         <div class="clearfix"></div>
+       </form>
+     </div>
+   </ng-template>
+   <!-- Create SME Modal Popup -->
+<br/>
+<br/>
+<div *ngIf="smeList?.length > 0">
+ <div class="table-responsive">
+  <table class="table table-bordered text-center">
+    <thead class="text-center">
+      <tr>
+        <th>Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of smeList">
+        <td>{{item.name}}</td>
+        <td class="action">
+          <!-- <span (click)="getUserById(item._id)" *ngIf="item.role==='User'"> -->
+          <span (click)="getSmeId(item._id)">
+            <i class="fas fa-pencil-alt"></i>
+          </span>
+          <span (click)="deleteSme(item._id)">
+            <i class="fas fa-trash-alt"></i>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<div *ngIf="isModalShown" [config]="{ show: true, backdrop: 'static', keyboard :false }" bsModal #autoShownModal="bs-modal"
+  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name" id="updateUser">
+  <div class="modal-dialog">
+    <div class="modal-content" *ngIf="mySmeId">
+      <div class="modal-header">
+        <h4 id="dialog-auto-name" class="modal-title pull-left">Edit {{mySmeId.name}} User</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="horizontal" name="form" novalidate>
+          <div class="form-group row">
+            <label class="control-label col-sm-2" for="name">Name</label>
+            <div class="col-sm-10">
+              <input type="text" autocomplete="off" class="form-control" placeholder="Enter your Name" name="name" [(ngModel)]="mySmeId.name"
+                required />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="updateUser(mySmeId._id, mySmeId)">OK</button>
+        <button type="button" class="btn btn-default" (click)="hideModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

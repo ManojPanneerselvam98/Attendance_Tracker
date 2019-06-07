@@ -1,0 +1,14 @@
+#navbarText {
+    .nav-link {
+        color: #fff;
+    }
+}
+.logout{
+    &:hover {
+        cursor: pointer;
+    }
+}
+a.nav-link.active {
+    border-bottom: 2px solid #fff;
+    /* position: relative; */
+}

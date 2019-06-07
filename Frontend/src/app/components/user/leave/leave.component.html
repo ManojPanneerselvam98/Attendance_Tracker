@@ -1,0 +1,60 @@
+<div id="pl">
+    <form #leaveForm="ngForm">
+        <div class="container">
+            <div class="form-group">
+                <!-- <input 
+                    class="form-control" 
+                    placeholder="Select Your Planned Leave" 
+                    bsDatepicker 
+                    [daysDisabled]="[6,0]" 
+                    ngModel 
+                    id="plannedleaveInput"
+                    name="plannedleave" 
+                    autocomplete="off"
+                    [minDate]="minDate"
+                    [maxDate]="maxDate"
+                    (bsValueChange)="onValueChange($event)"
+                    [isOpen]= "true"
+                    [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-default' }"
+                > -->
+
+                <bs-datepicker-inline 
+                    id="plannedleaveInput"
+                    autocomplete="off"
+                    [minDate]="minDate"
+                    [maxDate]="maxDate"
+                    (bsValueChange)="onValueChange($event)"
+                    [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-default' }"
+                ></bs-datepicker-inline>
+            </div>
+        </div>
+    </form>
+
+    <!-- <div *ngIf = "PLDetails" id="plLeaveDetails">
+        <h5> Your Planned Leaves </h5>
+        <ul>
+            <li *ngFor= "let obj of PLDetails">{{obj.curdate}} - {{obj.curmonth}} - {{obj.curyear}} </li>
+        </ul>
+    </div> -->
+
+    <div *ngIf = "PLDetails" id="plLeaveDetails">
+        <div class="container">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Planned Leave</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor= "let obj of PLDetails">
+                    <td>{{obj.curdate}} - {{obj.curmonth}} - {{obj.curyear}}</td>
+                    <td><i class="fas fa-trash-alt" (click)="cancelPL(obj.curdate)"></i></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

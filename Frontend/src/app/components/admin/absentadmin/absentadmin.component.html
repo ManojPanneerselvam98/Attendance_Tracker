@@ -1,0 +1,26 @@
+<div class="container" id="absReport">
+  <div class="row" *ngIf="absentUser?.length > 0">
+    <div class="col-12">
+    <div *ngFor="let obj of absentUser" class="form-group row mx-sm-10">
+      <form (ngSubmit)="onSubmit($event)" class="form-inline">
+          <div class="form-group mb-2 mx-sm-4">
+            <p class="static">{{obj.username}}</p>
+              <!-- <input name="name" value={{obj.user.name}} class="form-control"> -->
+              <input type="hidden" name="username" value={{obj.username}} class="form-control">
+          </div>
+          <div class="form-group mb-2 mx-sm-4">
+            <!-- <input name="leave"> -->
+            <select name="type" class="form-control">
+                <option>Sick Leave</option>
+                <option>Emergencey Leave</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary float-right">Mark as Absent</button>
+      </form>
+    </div>
+    </div>
+  </div>
+  <div  *ngIf="absentUser?.length == 0">
+    No Absent Today
+  </div>
+</div>

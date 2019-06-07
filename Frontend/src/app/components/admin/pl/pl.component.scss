@@ -1,0 +1,16 @@
+#userPL {
+  width: 50%;
+  margin: 0 auto;
+  .plHistory select {
+    margin-right: 22px;
+    margin-top: 25px;
+  }
+  button{
+    margin-top: 25px;
+  }
+  .fas {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

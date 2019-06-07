@@ -1,0 +1,13 @@
+#holiday{
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+
+    #HLDetails {
+        .fas {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}

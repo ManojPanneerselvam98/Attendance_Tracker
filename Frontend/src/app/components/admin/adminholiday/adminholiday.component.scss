@@ -1,0 +1,18 @@
+#holiday{
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    .hlHistory select {
+        margin-right: 22px;
+        margin-top: 25px;
+      }
+      button{
+        margin-top: 25px;
+      }
+    .fas {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    
+}
